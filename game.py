@@ -302,14 +302,24 @@ class Game:
             bot.draw(self.screen)
 
         font = pygame.font.SysFont(None, 24)
-        y = 10
-        if self.human_player:
-            human_text = font.render(f"Human Level: {self.human_player.level}", True, GREEN)
-            self.screen.blit(human_text, (10, y))
-            y += 30
-        ai_text = font.render(f"AI Level: {self.ai_player.level}", True, BLUE)
-        self.screen.blit(ai_text, (10, y))
 
+        # Display human and AI levels with HP below to avoid overlap
+        if self.human_player:
+            # Human level
+            human_level_text = font.render(f"Human Level: {self.human_player.level}", True, GREEN)
+            self.screen.blit(human_level_text, (10, 10))
+            # Human HP (placed below level)
+            human_hp_text = font.render(f"HP: {self.human_player.hp}", True, RED)
+            self.screen.blit(human_hp_text, (10, 35))
+            # AI level (further down)
+            ai_level_text = font.render(f"AI Level: {self.ai_player.level}", True, BLUE)
+            self.screen.blit(ai_level_text, (10, 60))
+        else:
+            # Only AI exists (training mode)
+            ai_level_text = font.render(f"AI Level: {self.ai_player.level}", True, BLUE)
+            self.screen.blit(ai_level_text, (10, 10))
+
+        # Game over overlay
         if self.game_over:
             overlay = pygame.Surface((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.SRCALPHA)
             overlay.fill((0, 0, 0, 128))
@@ -324,7 +334,7 @@ class Game:
                 msg = "GAME OVER"
                 color = RED
             text = font.render(msg, True, color)
-            text_rect = text.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2))
+            text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
             self.screen.blit(text, text_rect)
 
         pygame.display.flip()
@@ -352,7 +362,7 @@ class Game:
             "- Eat fish of lower or equal level to gain XP.",
             "- Level up when XP reaches 1.0.",
             "- Colliding with a larger fish costs 1 HP.",
-            "- First player to reach level 30 wins.",
+            "- First player to reach level 15 wins.",
             "",
             "Controls:",
             "- Player (Green): Arrow keys",

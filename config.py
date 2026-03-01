@@ -28,8 +28,8 @@ PLAYER_RADIUS_PER_LEVEL = 2
 BOT_SPEED = 2
 BOT_RADIUS_BASE = 8
 BOT_RADIUS_PER_LEVEL = 1.5
-BOT_GEN_PROB = 0.5          # Probability of spawning a bot each frame
-MAX_BOT_COUNT = 100         # Maximum number of bots on screen
+BOT_GEN_PROB =0.2        # Probability of spawning a bot each frame
+MAX_BOT_COUNT = 40       # Maximum number of bots on screen
 
 # Level range
 MIN_LEVEL = 1
