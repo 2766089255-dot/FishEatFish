@@ -288,7 +288,6 @@ class Game:
         self.update_level_distribution()
 
     def draw(self):
-        """Render the game screen."""
         if not self.render:
             return
 
@@ -303,19 +302,17 @@ class Game:
 
         font = pygame.font.SysFont(None, 24)
 
-        # Display human and AI levels with HP below to avoid overlap
         if self.human_player:
             # Human level
             human_level_text = font.render(f"Human Level: {self.human_player.level}", True, GREEN)
             self.screen.blit(human_level_text, (10, 10))
-            # Human HP (placed below level)
+            # Human HP
             human_hp_text = font.render(f"HP: {self.human_player.hp}", True, RED)
             self.screen.blit(human_hp_text, (10, 35))
-            # AI level (further down)
+            # AI level
             ai_level_text = font.render(f"AI Level: {self.ai_player.level}", True, BLUE)
             self.screen.blit(ai_level_text, (10, 60))
         else:
-            # Only AI exists (training mode)
             ai_level_text = font.render(f"AI Level: {self.ai_player.level}", True, BLUE)
             self.screen.blit(ai_level_text, (10, 10))
 

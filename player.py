@@ -80,10 +80,6 @@ class HumanPlayer(BasePlayerFish):
     def draw(self, screen):
         """Draw human fish in green and show HP."""
         super().draw(screen, GREEN)
-        font = pygame.font.SysFont(None, 24)
-        hp_text = font.render(f"HP: {self.hp}", True, RED)
-        screen.blit(hp_text, (10, 10))
-
 
 class AIPlayer(BasePlayerFish):
     """AI player controlled by a DQN agent."""
